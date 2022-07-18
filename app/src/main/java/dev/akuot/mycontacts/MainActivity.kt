@@ -28,6 +28,13 @@ class MainActivity : AppCompatActivity() {
 
 
 
+}
+    fun main(){
+        myFloat()
 
-    }
+    }    }
+
+     fun myFloat(){
+      var number: Float=4.5F
+         print("Akuot"+number)
 }

@@ -1,9 +1,11 @@
 package dev.akuot.mycontacts
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
@@ -25,6 +27,7 @@ class ContactsRvAdapter (var contactList: List<Contacts>):RecyclerView.Adapter<C
         holder.binding.tvContact.text=currentContacts.phoneNumber
         holder.binding.tvEmail.text=currentContacts.email
         holder.binding.tvAddress.text=currentContacts.address
+
         Picasso.get().
         load(currentContacts.image)
             .placeholder(R.drawable.ic_baseline_person_24)
@@ -32,6 +35,19 @@ class ContactsRvAdapter (var contactList: List<Contacts>):RecyclerView.Adapter<C
             .resize(300,350)
             .centerCrop()
             .into(holder.binding.ivContact)
+
+        val context =holder.itemView.context
+        holder.binding.ivContact.setOnClickListener{
+            Toast.makeText(context,"you have clicked on ${currentContacts.name}'s image",Toast.LENGTH_SHORT).show()
+        }
+        holder.binding.cvContact.setOnClickListener{
+            val intent=Intent(context,ViewContactActivity::class.java)
+            intent.putExtra("NAME",currentContacts.name)
+            intent.putExtra("EMAIL",currentContacts.email)
+            intent.putExtra("ADDRESS",currentContacts.address)
+
+            context.startActivity(intent)
+        }
 
    }
 
