@@ -27,9 +27,8 @@ class ContactsRvAdapter (var contactList: List<Contacts>):RecyclerView.Adapter<C
         holder.binding.tvContact.text=currentContacts.phoneNumber
         holder.binding.tvEmail.text=currentContacts.email
         holder.binding.tvAddress.text=currentContacts.address
-
-        Picasso.get().
-        load(currentContacts.image)
+        Picasso.get()
+            .load(currentContacts.image)
             .placeholder(R.drawable.ic_baseline_person_24)
             .error(R.drawable.ic_baseline_error_24)
             .resize(300,350)
@@ -45,6 +44,9 @@ class ContactsRvAdapter (var contactList: List<Contacts>):RecyclerView.Adapter<C
             intent.putExtra("NAME",currentContacts.name)
             intent.putExtra("EMAIL",currentContacts.email)
             intent.putExtra("ADDRESS",currentContacts.address)
+            intent.putExtra("PHONE_NUMBER",currentContacts.phoneNumber)
+            intent.putExtra("IMAGE",currentContacts.image)
+
 
             context.startActivity(intent)
         }
